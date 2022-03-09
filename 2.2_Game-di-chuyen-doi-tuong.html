@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game đơn giản - di chuyển đối tượng</title>
+</head>
+<body>
+<div id="game"></div>
+<script>
+    // Xây dựng lớp Hero
+    function Hero (image, top, left, size, speed) {
+        this.image = image;
+        this.top = top;
+        this.left = left;
+        this.size = size;
+        this.speed = speed;
+        // Xây dựng phương thức xác định kích thước, vị trí của Hero
+        this.getHeroElement = function(){
+            return '<img width="'+ this.size + '"' +
+                ' height="'+ this.size + '"' +
+                ' src="' + this.image +'"' +
+                ' style="top: '+this.top+'px; left:'+this.left+'px;position:absolute;" />';
+        }
+        // Xây dựng phương thức di chuyển sang phải
+        this.moveRight = function () {
+            this.left += speed;
+        }
+        // Xây dựng phương thức di chuyển xuống dưới
+        this.moveDown = function () {
+            this.top += speed;
+        }
+        // Xây dựng phương thức di chuyển sang trái
+        this.moveLeft = function () {
+            this.left -= speed;
+        }
+        // Xây dựng phương thức di chuyển xuống lên trên
+        this.moveTop = function () {
+            this.top -= speed;
+        }
+    }
+    // Tạo đối tượng hero
+    var hero = new Hero('Image/pikachu.png', 20, 30, 200, 50);
+    // Xây dựng hàm để di chuyển đối tượng hero sang bên phải
+    function startRight(){
+        if(hero.left < window.innerWidth - hero.size){
+            hero.moveRight();
+        }
+        document.getElementById('game').innerHTML = hero.getHeroElement();
+        setTimeout(startRight, 500)
+    }
+    startRight();
+
+    // Xây dựng hàm để di chuyển đối tượng hero sang xuống dưới
+    function startDown(){
+        if(hero.top < window.innerHeight - hero.size){
+            hero.moveDown();
+        }
+        document.getElementById('game').innerHTML = hero.getHeroElement();
+        setTimeout(startDown, 500)
+    }
+    startDown();
+
+
+</script>
+</body>
+</html>

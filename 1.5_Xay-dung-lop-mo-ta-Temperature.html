@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xây dựng lớp mô tả Temperature</title>
+</head>
+<body>
+<div>
+    <h3>Chuyển đổi nhiệt độ</h3>
+    <p>Nhập độ C:</p>
+    <input type="text" id="doC">
+    <br><br>
+    <button onclick="convertToF()">Đổi sang độ F</button>
+    <button onclick="convertToK()">Đổi sang độ K</button>
+    <p id="ketqua"></p>
+</div>
+<script>
+    // Xây dựng lớp Temperature
+    class Temperature {
+        constructor(temp) {
+            this.Celsius = temp;
+        }
+        // Xây dựng phương thức trả về độ F
+        // parseFloat(): chuyển đổi chuỗi đã cho thành một số dấu phảy động
+        // toFixed(): làm tròn số và trả về chính xác N số sau dấu phảy
+        toFahrenheit() {
+            return parseFloat(this.Celsius * 1.8 + 32).toFixed(2);
+        }
+        // Xây dựng phương thức trả về độ K
+        toKenvin() {
+            return this.Celsius + 273;
+        }
+    }
+    // Xây dựng hàm hiện kết quả độ F
+    function convertToF() {
+        let Celsius = +document.getElementById("doC").value;
+        let temperature = new Temperature(Celsius);
+        let Fahrenheit = temperature.toFahrenheit();
+        document.getElementById("ketqua").innerHTML = "Độ F = " + Fahrenheit;
+    }
+    // Xây dựng hàm hiện kết quả độ K
+    function convertToK() {
+        let Celsius = +document.getElementById("doC").value;
+        let temperature = new Temperature(Celsius);
+        let Kenvin = temperature.toKenvin();
+        document.getElementById("ketqua").innerHTML = "Độ K = " + Kenvin;
+    }
+
+</script>
+</body>
+</html>

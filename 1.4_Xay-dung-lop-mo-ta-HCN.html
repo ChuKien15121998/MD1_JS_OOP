@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xây dựng lớp mô tả hình chữ nhật</title>
+    <style>
+        html {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <h3>Tạo lớp hình chữ nhật</h3>
+    <p>Nhập chiều dài:</p>
+    <input type="text" id="chieudai">
+    <p>Nhập chiều rộng:</p>
+    <input type="text" id="chieurong">
+    <br><br>
+    <button onclick="showResult()">Kết quả</button>
+    <p id="AreaPeri"></p>
+</div>
+<canvas id="myCanvas" width="300" height="200px" style="border:3px solid #d3d3d3;"></canvas>
+<script>
+    // Xây dựng lớp Rectangle
+    class Rectangle {
+        constructor(height, width) {
+            this.height = height;
+            this.width = width;
+        }
+        // Xây dựng phương thức trả về diện tích
+        getArea() {
+            return this.height * this.width;
+        }
+        // Xây dựng phương thức trả về chu vi
+        getPerimeter() {
+            return (this.height + this.width) * 2;
+        }
+        // Vẽ Rectangle
+        drawRec() {
+            let ctx = document.getElementById("myCanvas").getContext("2d");
+            ctx.beginPath();
+            ctx.rect(50, 50, this.height, this.width);
+            ctx.stroke();
+        }
+    }
+    // Xây dựng hàm hiện kết quả
+    function showResult() {
+        // Lấy giá trị từ ô input
+        let height = +document.getElementById("chieudai").value;
+        let width = +document.getElementById("chieurong").value;
+        // Tạo đối tượng rectangle
+        let rectangle = new Rectangle(height, width);
+        // Vẽ
+        rectangle.drawRec();
+        // Lấy diện tích và chu vi
+        let area = rectangle.getArea();
+        let perimeter = rectangle.getPerimeter();
+        result = "Diện tích: " + area + "<br>" + "Chu vi: " + perimeter;
+        document.getElementById("AreaPeri").innerHTML = result;
+    }
+
+
+</script>
+</body>
+</html>

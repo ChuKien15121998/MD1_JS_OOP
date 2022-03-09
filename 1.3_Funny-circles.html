@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Funny Circle</title>
+</head>
+<body>
+<canvas id="myCanvas" width="1368px" height="768px" style="border:1px solid #d3d3d3;"></canvas>
+<script>
+
+    class Circle {
+        constructor(x, y, radius) {
+            this.x = x;
+            this.y = y;
+            this.radius = radius;
+        }
+        // Vẽ hình tròn kích thước cố định
+        createCircle() {
+            let ctx = document.getElementById("myCanvas").getContext("2d");
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        // Vẽ hình tròn bán kính ngẫu nhiên
+        createRandomCircle() {
+            var ctx = document.getElementById("myCanvas").getContext("2d");
+            let radius = Math.floor(Math.random() * 80);
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, radius, 0, 2 * Math.PI);
+            ctx.fill();
+        }
+        // Vẽ hình tròn màu ngẫu nhiên
+        getRandomHex() {
+            return Math.floor(Math.random() * 255);
+        }
+        getRandomColor() {
+            let red = getRandomHex();
+            let green = getRandomHex();
+            let blue = getRandomHex();
+            return "rgb(" + red + "," + blue + "," + green + ")";
+        }
+        createRandomColorCircle() {
+            let ctx = document.getElementById("myCanvas").getContext("2d");
+            let radius = Math.floor(Math.random() * 80);
+            let color = getRandomColor();
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+        // Vẽ hình tròn vị trí ngẫu nhiên
+        createRandomPosCircle() {
+            let ctx = document.getElementById("myCanvas").getContext("2d");
+            let radius = Math.floor(Math.random() * 80);
+            let color = getRandomColor();
+            let x = Math.random() * window.innerWidth;
+            let y = Math.random() * window.innerHeight;
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI);
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+    }
+
+    let circle = new Circle(500, 500, 80);
+    circle.createCircle();
+    circle.createRandomCircle();
+    circle.createRandomColorCircle();
+    // Vẽ 2 hình tròn
+    circle.createRandomPosCircle();
+    circle.createRandomPosCircle();
+    // Vẽ nhiều hình tròn
+    for (let i = 0; i < 10; i++) {
+        circle.createRandomPosCircle();
+    }
+</script>
+</body>
+
+</html>

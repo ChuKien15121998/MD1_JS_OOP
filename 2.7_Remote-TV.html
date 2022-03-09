@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sử dụng Remote để điều khiển TV</title>
+</head>
+<body>
+<script>
+    class TiVi {
+        constructor(channel, volumn, status) {
+            this.channel = channel;
+            this.volumn = volumn;
+            this.status = status;
+        }
+        setRemote(remote) {
+            this.remote = remote;
+        }
+        turnOff() {
+            this.status = false;
+        }
+        turnOn() {
+            this.status = true;
+        }
+        setChannel(channel) {
+            this.channel = channel;
+        }
+        setVolumn(volumn) {
+            this.volumn = volumn;
+        }
+    }
+    class Remote {
+        constructor() {
+            this.code = code;
+        }
+        switchOff() {
+            this.status = false;
+            this.television.turnOff();
+        }
+        switchOn() {
+            this.status = true;
+            this.television.turnOn();
+        }
+        changeChannel() {
+            this.televion.setChannel()
+        }
+        changeVolumn() {
+            this.televion.setVolumn()
+        }
+    }
+
+</script>
+</body>
+</html>
