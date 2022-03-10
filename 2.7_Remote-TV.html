@@ -12,41 +12,71 @@
             this.volumn = volumn;
             this.status = status;
         }
-        setRemote(remote) {
-            this.remote = remote;
+
+        getStatus() {
+            return this.status;
         }
-        turnOff() {
-            this.status = false;
+
+        setStatus(status) {
+            this.status = status;
         }
-        turnOn() {
-            this.status = true;
+
+        getVolumn() {
+            return this.volumn;
         }
-        setChannel(channel) {
-            this.channel = channel;
-        }
+
         setVolumn(volumn) {
             this.volumn = volumn;
         }
+
+        getChannel() {
+            return this.channel;
+        }
+
+        setChannel(channel) {
+            this.channel = channel;
+        }
     }
+
     class Remote {
-        constructor() {
-            this.code = code;
+        onOff(tv) {
+            tv.setStatus(!tv.getStatus());
         }
-        switchOff() {
-            this.status = false;
-            this.television.turnOff();
+
+        changeChannel(tv, channel) {
+            if (tv.getStatus()) {
+                tv.setChannel(channel);
+            } else {
+                console.log("Turn on TV, please!!!");
+            }
         }
-        switchOn() {
-            this.status = true;
-            this.television.turnOn();
+
+        upVolumn(tv) {
+            if (tv.getStatus()) {
+                if (tv.getVolumn() < 20) {
+                    tv.setVolumn(tv.getVolumn() + 1);
+                } else {
+                    console.log("This volumn is max")
+                }
+            } else {
+                console.log("Turn on TV, please!!!")
+            }
         }
-        changeChannel() {
-            this.televion.setChannel()
-        }
-        changeVolumn() {
-            this.televion.setVolumn()
+
+        downVolumn(tv) {
+            if (tv.getStatus()) {
+                if (tv.getVolumn() > 0) {
+                    tv.setVolumn(tv.getVolumn() + 1);
+                } else {
+                    console.log("This volumn is min")
+                }
+            } else {
+                console.log("Turn on TV, please!!!")
+            }
         }
     }
+    let tv = new TiVi(null, 0, false);
+    let remote = new Remote();
 
 </script>
 </body>
